@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.Database;
+import model.Business;
+
 @WebServlet("/create-business")
 public class CreateBusinessServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,9 +29,14 @@ public class CreateBusinessServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
 		out.println("<body>");
-		out.printf("create business <b>%s</b>", businessName);
+		out.printf("created business <b>%s</b>", businessName);
 		out.println("</body>");
 		out.println("</html>");
+		
+		Business business = new Business();
+		business.setName(businessName);
+		
+		Database.addBusiness(business);
 	}
 
 }
