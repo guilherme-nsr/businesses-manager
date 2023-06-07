@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,9 +30,7 @@ public class CreateBusinessServlet extends HttpServlet {
 		
 		Database.addBusiness(business);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("NewBusinessCreated.jsp");
-		request.setAttribute("business", business);
-		rd.forward(request, response);
+		response.sendRedirect("list-businesses");
 	}
 
 }
