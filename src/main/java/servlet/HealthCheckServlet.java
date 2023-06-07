@@ -20,7 +20,7 @@ public class HealthCheckServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println(LocalDateTime.now() + " debug: call /health-check");
+		System.out.println(LocalDateTime.now() + " debug: GET /health-check");
 		
 		PrintWriter out = resp.getWriter();
 		out.println("<b>health check</b>");
