@@ -1,10 +1,10 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,22 +26,11 @@ public class ListBusinessesServlet extends HttpServlet {
 		System.out.println(LocalDateTime.now() + " debug: GET /list-businesses");
 		
 		List<Business> businesses = Database.getBusinesses();
-		
 		System.out.println(businesses);
 		
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("<p>Businesses:</p>");
-		out.println("<ul>");
-		for (Business business : businesses) {
-			out.println("<li>");
-			out.println(business.getName());
-			out.println("</li>");
-		}
-		out.println("</body>");
-		out.println("</html>");
-		out.println("</ul>");
+		RequestDispatcher rd = request.getRequestDispatcher("ListBusinesses.jsp");
+		request.setAttribute("businesses", businesses);
+		rd.forward(request, response);
 	}
 
 }
